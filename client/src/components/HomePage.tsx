@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react"
 import Axios, { AxiosResponse } from "axios"
 
+/**
+ * TODO:
+ * [] Figure out how to bypass CORS - potentially proxying
+ * [] Develop a search bar - search for GE items
+ * [] Develop a way to add to page/state - likely in a table
+ */
+
 const pricesBaseUrl = "prices.runescape.wiki/api/v1/osrs"
 const itemsBaseUrl =
   "https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/items.json?category=1&"

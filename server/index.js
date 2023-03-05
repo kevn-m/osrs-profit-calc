@@ -12,23 +12,9 @@ mongoose.connect(
   "mongodb+srv://kevn-m:oUv67TriWEVG3EAJ@cluster0.jy9unwn.mongodb.net/osrs-profit-calc?retryWrites=true&w=majority"
 )
 
-app.get("/getUsers", (req, res) => {
-  UserModel.find({})
-    .then((result) => {
-      res.json(result)
-    })
-    .catch((err) => {
-      res.json(err)
-    })
-})
+const userRouter = require("./routes/users")
 
-app.post("/createUser", async (req, res) => {
-  const user = req.body
-  const newUser = new UserModel(user)
-  await newUser.save()
-
-  res.json(user)
-})
+app.use("/users", userRouter)
 
 app.listen(3001, () => {
   console.log("Server running on 3001...")

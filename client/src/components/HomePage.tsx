@@ -8,10 +8,6 @@ import Axios, { AxiosResponse } from "axios"
  * [] Develop a way to add to page/state - likely in a table
  */
 
-const pricesBaseUrl = "prices.runescape.wiki/api/v1/osrs"
-const itemsBaseUrl =
-  "https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/items.json?category=1&"
-
 export type Item = {
   icon: string
   icon_large: string
@@ -35,11 +31,11 @@ export const HomePage = () => {
   const [allItems, setAllItems] = useState<Item[]>()
 
   useEffect(() => {
-    Axios.get(`${itemsBaseUrl}alpha=rune 2&page=1`).then((res) => {
+    Axios.get("http://localhost:3001/api/items").then((res) => {
       setAllItems(res.data.items)
-      console.log(res.data)
+      console.log(res.data.items)
     })
-  })
+  }, [])
 
   return (
     <div>

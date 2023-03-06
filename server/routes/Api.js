@@ -21,4 +21,16 @@ router.get("/items", async (req, res) => {
   }
 })
 
+router.get("/prices", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://prices.runescape.wiki/api/v1/osrs/latest"
+    )
+
+    res.json(response.data)
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+})
+
 module.exports = router

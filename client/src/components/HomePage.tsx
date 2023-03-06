@@ -3,7 +3,7 @@ import Axios, { AxiosResponse } from "axios"
 
 /**
  * TODO:
- * [] Figure out how to bypass CORS - potentially proxying
+ * [x] Figure out how to bypass CORS - potentially proxying
  * [] Develop a search bar - search for GE items
  * [] Develop a way to add to page/state - likely in a table
  */

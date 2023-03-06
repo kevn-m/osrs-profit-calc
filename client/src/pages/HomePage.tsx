@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Axios from "axios"
+import { Searchbar } from "../components/Searchbar"
 
 /**
  * TODO:
@@ -39,6 +40,7 @@ export const HomePage = () => {
 
   return (
     <div>
+      <Searchbar />
       {allItems &&
         allItems.map((item, key) => {
           return (

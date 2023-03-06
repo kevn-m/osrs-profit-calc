@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Axios, { AxiosResponse } from "axios"
+import Axios from "axios"
 
 /**
  * TODO:
@@ -40,9 +40,9 @@ export const HomePage = () => {
   return (
     <div>
       {allItems &&
-        allItems.map((item) => {
+        allItems.map((item, key) => {
           return (
-            <div>
+            <div key={key}>
               <h1>{item.name}</h1>
               <p>{item.description}</p>
               <p>{item.current.price}</p>

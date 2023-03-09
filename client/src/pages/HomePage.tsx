@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Axios from "axios"
+import Axios, { AxiosResponse } from "axios"
 import { Searchbar } from "../components/Searchbar"
 
 /**
@@ -9,48 +9,33 @@ import { Searchbar } from "../components/Searchbar"
  * [] Develop a way to add to page/state - likely in a table
  */
 
-export type Item = {
-  icon: string
-  icon_large: string
+export interface Item {
+  examine: string
   id: number
-  type: string
-  typeIcon: string
+  members: boolean
+  lowalch?: number
+  limit?: number
+  value: number
+  highalch?: number
+  icon: string
   name: string
-  description: string
-  current: {
-    trend: string
-    price: string
-  }
-  today: {
-    trend: string
-    price: string
-  }
-  members: string
 }
 
 export const HomePage = () => {
   const [allItems, setAllItems] = useState<Item[]>()
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/items").then((res) => {
-      setAllItems(res.data.items)
-      console.log(res.data.items)
-    })
+    Axios.get("http://localhost:3001/api/items").then(
+      (res: AxiosResponse<Item[]>) => {
+        setAllItems(res.data)
+        console.log(res.data)
+      }
+    )
   }, [])
 
   return (
     <div>
       <Searchbar />
-      {allItems &&
-        allItems.map((item, key) => {
-          return (
-            <div key={key}>
-              <h1>{item.name}</h1>
-              <p>{item.description}</p>
-              <p>{item.current.price}</p>
-            </div>
-          )
-        })}
     </div>
   )
 }

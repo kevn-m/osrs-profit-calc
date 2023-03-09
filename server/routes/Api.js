@@ -5,14 +5,7 @@ const router = express.Router()
 router.get("/items", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/items.json",
-      {
-        params: {
-          category: 1,
-          alpha: "rune 2h",
-          page: 1,
-        },
-      }
+      "https://prices.runescape.wiki/api/v1/osrs/mapping"
     )
 
     res.json(response.data)

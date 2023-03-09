@@ -23,19 +23,45 @@ export interface Item {
 
 export const HomePage = () => {
   const [allItems, setAllItems] = useState<Item[]>()
+  const [filteredItems, setFilteredItems] = useState<Item[]>()
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/items").then(
       (res: AxiosResponse<Item[]>) => {
         setAllItems(res.data)
-        console.log(res.data)
       }
     )
   }, [])
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value.toLowerCase()
+
+    if (searchValue === "") {
+      setFilteredItems(undefined)
+    } else {
+      setFilteredItems(
+        allItems?.filter((item) => {
+          return item.name.toLowerCase().includes(searchValue)
+        })
+      )
+    }
+  }
+
   return (
     <div>
-      <Searchbar />
+      <Searchbar handleChange={handleChange} />
+      <div>
+        {filteredItems &&
+          filteredItems.map((item) => {
+            return (
+              <div key={item.id}>
+                <h1>{item.name}</h1>
+                <p>{item.value}</p>
+                <p>{item.examine}</p>
+              </div>
+            )
+          })}
+      </div>
     </div>
   )
 }

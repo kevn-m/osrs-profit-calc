@@ -1,5 +1,17 @@
 import React from "react"
 
-export const Searchbar = () => {
-  return <input className="border-solid" placeholder="Search an item"></input>
+interface Props {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export const Searchbar = (props: Props) => {
+  const { handleChange } = props
+
+  return (
+    <input
+      className="border-solid"
+      onChange={handleChange}
+      placeholder="Search an item"
+    ></input>
+  )
 }

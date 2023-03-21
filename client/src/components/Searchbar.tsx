@@ -8,10 +8,12 @@ export const Searchbar = (props: Props) => {
   const { handleChange } = props
 
   return (
-    <input
-      className="border-solid"
-      onChange={handleChange}
-      placeholder="Search an item"
-    ></input>
+    <div>
+      <input
+        className="border-solid"
+        onChange={handleChange}
+        placeholder="Search an item"
+      />
+    </div>
   )
 }

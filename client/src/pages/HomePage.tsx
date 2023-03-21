@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from "react"
 import Axios, { AxiosResponse } from "axios"
 import { Searchbar } from "../components/Searchbar"
+import * as types from "../types"
+import { SearchResults } from "../components/SearchResults"
 
 /**
  * TODO:
- * [x] Figure out how to bypass CORS - potentially proxying
- * [] Develop a search bar - search for GE items
- * [] Develop a way to add to page/state - likely in a table
+ * [] Add dropdown from searchbar to select item
+ * [] When clicked, pull the ID of item and search with prices api for latest
+ * [] Create a table to store all the items and their prices
  */
 
-export interface Item {
-  examine: string
-  id: number
-  members: boolean
-  lowalch?: number
-  limit?: number
-  value: number
-  highalch?: number
-  icon: string
-  name: string
-}
-
 export const HomePage = () => {
-  const [allItems, setAllItems] = useState<Item[]>()
-  const [filteredItems, setFilteredItems] = useState<Item[]>()
+  const [allItems, setAllItems] = useState<types.Item[]>()
+  const [filteredItems, setFilteredItems] = useState<types.Item[]>()
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/items").then(
-      (res: AxiosResponse<Item[]>) => {
+      (res: AxiosResponse<types.Item[]>) => {
         setAllItems(res.data)
       }
     )
@@ -50,18 +40,7 @@ export const HomePage = () => {
   return (
     <div>
       <Searchbar handleChange={handleChange} />
-      <div>
-        {filteredItems &&
-          filteredItems.map((item) => {
-            return (
-              <div key={item.id}>
-                <h1>{item.name}</h1>
-                <p>{item.value}</p>
-                <p>{item.examine}</p>
-              </div>
-            )
-          })}
-      </div>
+      <SearchResults filteredItems={filteredItems} />
     </div>
   )
 }

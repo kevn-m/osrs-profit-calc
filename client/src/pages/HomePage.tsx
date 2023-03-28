@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import Axios, { AxiosResponse } from "axios"
 import { Searchbar } from "../components/Searchbar"
 import * as types from "../types"
-import { SearchResults } from "../components/SearchResults"
 
 /**
  * TODO:
@@ -16,7 +15,6 @@ export const HomePage = () => {
   const [allPrices, setAllPrices] = useState<types.PriceResponse | undefined>(
     undefined
   )
-  const [filteredItems, setFilteredItems] = useState<types.Item[]>()
 
   const getAllItems = () => {
     Axios.get("http://localhost:3001/api/items").then(
@@ -39,24 +37,9 @@ export const HomePage = () => {
     setLatestPrices()
   }, [])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value.toLowerCase()
-
-    if (searchValue === "") {
-      setFilteredItems(undefined)
-    } else {
-      setFilteredItems(
-        allItems?.filter((item) => {
-          return item.name.toLowerCase().includes(searchValue)
-        })
-      )
-    }
-  }
-
   return (
     <div>
-      <Searchbar handleChange={handleChange} />
-      <SearchResults filteredItems={filteredItems} />
+      <Searchbar items={allItems} />
     </div>
   )
 }

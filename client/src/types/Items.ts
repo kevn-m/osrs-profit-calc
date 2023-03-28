@@ -21,3 +21,18 @@ export interface PriceResponse {
   }
   timestamp: number
 }
+
+export interface TransformedItems {
+  id: number
+  name: string
+  examine: string
+  highAlch: number
+  limit: number
+  icon: string
+  prices: {
+    avgHighPrice: number | null
+    highPriceVolume: number
+    avgLowPrice: number | null
+    lowPriceVolume: number
+  }
+}

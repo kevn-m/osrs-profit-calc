@@ -3,10 +3,11 @@ import * as types from "../types"
 
 interface Props {
   items: types.Item[] | undefined
+  handleClick: (item: types.Item) => void
 }
 
 export const Searchbar = (props: Props) => {
-  const { items } = props
+  const { items, handleClick } = props
 
   const [filteredItems, setFilteredItems] = useState<types.Item[]>()
 
@@ -35,7 +36,7 @@ export const Searchbar = (props: Props) => {
         <div className="absolute top-12 bg-white border border-gray-300 z-10 max-h-60 overflow-y-auto">
           {filteredItems.map((item) => (
             <div
-              onClick={() => console.log(item)}
+              onClick={() => handleClick(item)}
               key={item.id}
               className="px-4 py-2 hover:bg-gray-200"
             >

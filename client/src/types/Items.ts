@@ -9,3 +9,15 @@ export interface Item {
   icon: string
   name: string
 }
+
+export interface PriceResponse {
+  data: {
+    [key: string]: {
+      avgHighPrice: number | null
+      highPriceVolume: number
+      avgLowPrice: number | null
+      lowPriceVolume: number
+    }
+  }
+  timestamp: number
+}

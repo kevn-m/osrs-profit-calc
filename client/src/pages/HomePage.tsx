@@ -13,14 +13,30 @@ import { SearchResults } from "../components/SearchResults"
 
 export const HomePage = () => {
   const [allItems, setAllItems] = useState<types.Item[]>()
+  const [allPrices, setAllPrices] = useState<types.PriceResponse | undefined>(
+    undefined
+  )
   const [filteredItems, setFilteredItems] = useState<types.Item[]>()
 
-  useEffect(() => {
+  const getAllItems = () => {
     Axios.get("http://localhost:3001/api/items").then(
       (res: AxiosResponse<types.Item[]>) => {
         setAllItems(res.data)
       }
     )
+  }
+
+  const setLatestPrices = () => {
+    Axios.get("http://localhost:3001/api/prices").then(
+      (res: AxiosResponse<types.PriceResponse>) => {
+        setAllPrices(res.data)
+      }
+    )
+  }
+
+  useEffect(() => {
+    getAllItems()
+    setLatestPrices()
   }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

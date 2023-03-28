@@ -17,7 +17,7 @@ router.get("/items", async (req, res) => {
 router.get("/prices", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://prices.runescape.wiki/api/v1/osrs/latest"
+      "https://prices.runescape.wiki/api/v1/osrs/5m"
     )
 
     res.json(response.data)

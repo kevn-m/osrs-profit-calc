@@ -48,7 +48,7 @@ export const Searchbar = (props: Props) => {
   return (
     <div>
       <input
-        className="border-none w-full h-24"
+        className="border-none w-full h-12 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
         onChange={handleChange}
         placeholder="Search an item"
       />

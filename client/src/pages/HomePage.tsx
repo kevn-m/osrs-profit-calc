@@ -77,42 +77,40 @@ export const HomePage = () => {
   }, [selectedItems])
 
   return (
-    <div className="container mx-auto flex justify-center p-4">
-      <div className="w-full">
-        <Searchbar items={allItems} handleClick={handleClick} />
-        <div className="overflow-x-auto">
-          <table className="table-auto border-collapse border border-gray-400 w-full">
-            <thead>
-              <tr className="bg-gray-200">
-                <th className="px-4 py-2">Name</th>
-                <th className="px-4 py-2">Examine</th>
-                <th className="px-4 py-2">High Alch</th>
-                <th className="px-4 py-2">Limit</th>
-                <th className="px-4 py-2">Avg High Price</th>
-                <th className="px-4 py-2">Avg Low Price</th>
+    <div className="container mx-auto flex flex-col justify-center p-4 w-full gap-3">
+      <Searchbar items={allItems} handleClick={handleClick} />
+      <div className="overflow-x-auto">
+        <table className="table-auto border-collapse border border-gray-400 w-full">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="px-4 py-2">Name</th>
+              <th className="px-4 py-2">Examine</th>
+              <th className="px-4 py-2">High Alch</th>
+              <th className="px-4 py-2">Limit</th>
+              <th className="px-4 py-2">Avg High Price</th>
+              <th className="px-4 py-2">Avg Low Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {buildSelectedItems()?.map((item, index) => (
+              <tr
+                key={item.id}
+                className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
+              >
+                <td className="border px-4 py-2">{item.name}</td>
+                <td className="border px-4 py-2">{item.examine}</td>
+                <td className="border px-4 py-2">{item.highAlch}</td>
+                <td className="border px-4 py-2">{item.limit}</td>
+                <td className="border px-4 py-2">
+                  {item.prices.avgHighPrice ?? "-"}
+                </td>
+                <td className="border px-4 py-2">
+                  {item.prices.avgLowPrice ?? "-"}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {buildSelectedItems()?.map((item, index) => (
-                <tr
-                  key={item.id}
-                  className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
-                >
-                  <td className="border px-4 py-2">{item.name}</td>
-                  <td className="border px-4 py-2">{item.examine}</td>
-                  <td className="border px-4 py-2">{item.highAlch}</td>
-                  <td className="border px-4 py-2">{item.limit}</td>
-                  <td className="border px-4 py-2">
-                    {item.prices.avgHighPrice ?? "-"}
-                  </td>
-                  <td className="border px-4 py-2">
-                    {item.prices.avgLowPrice ?? "-"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )

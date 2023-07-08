@@ -77,32 +77,34 @@ export const HomePage = () => {
   }, [selectedItems])
 
   return (
-    <div>
-      <Searchbar items={allItems} handleClick={handleClick} />
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Examine</th>
-            <th>High Alch</th>
-            <th>Limit</th>
-            <th>Avg High Price</th>
-            <th>Avg Low Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {buildSelectedItems()?.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.examine}</td>
-              <td>{item.highAlch}</td>
-              <td>{item.limit}</td>
-              <td>{item.prices.avgHighPrice ?? "-"}</td>
-              <td>{item.prices.avgLowPrice ?? "-"}</td>
+    <div className="container mx-auto flex justify-center p-4">
+      <div className="w-full">
+        <Searchbar items={allItems} handleClick={handleClick} />
+        <table className="w-full">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Examine</th>
+              <th>High Alch</th>
+              <th>Limit</th>
+              <th>Avg High Price</th>
+              <th>Avg Low Price</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {buildSelectedItems()?.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.examine}</td>
+                <td>{item.highAlch}</td>
+                <td>{item.limit}</td>
+                <td>{item.prices.avgHighPrice ?? "-"}</td>
+                <td>{item.prices.avgLowPrice ?? "-"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

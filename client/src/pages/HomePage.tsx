@@ -89,6 +89,7 @@ export const HomePage = () => {
               <th className="px-4 py-2">Limit</th>
               <th className="px-4 py-2">Avg High Price</th>
               <th className="px-4 py-2">Avg Low Price</th>
+              <th className="px-4 py-2">Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -106,6 +107,19 @@ export const HomePage = () => {
                 </td>
                 <td className="border px-4 py-2">
                   {item.prices.avgLowPrice ?? "-"}
+                </td>
+                <td
+                  className="border px-4 py-2 text-center font-bold text-red-500"
+                  onClick={() =>
+                    setSelectedItems((prev) =>
+                      prev?.filter(
+                        (selectedItem) => selectedItem.id !== item.id
+                      )
+                    )
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  x
                 </td>
               </tr>
             ))}

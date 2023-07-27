@@ -45,6 +45,11 @@ export const Searchbar = (props: Props) => {
     }
   }
 
+  const handleItemClick = (item: types.Item) => {
+    handleClick(item)
+    setIsDropdownOpen(false)
+  }
+
   return (
     <div>
       <input
@@ -59,7 +64,7 @@ export const Searchbar = (props: Props) => {
         >
           {filteredItems?.map((item) => (
             <div
-              onClick={() => handleClick(item)}
+              onClick={() => handleItemClick(item)}
               key={item.id}
               className="px-4 py-2 hover:bg-gray-200"
             >

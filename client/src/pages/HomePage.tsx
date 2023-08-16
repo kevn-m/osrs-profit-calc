@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Axios, { AxiosResponse } from "axios"
 import { Searchbar } from "../components/Searchbar"
 import * as types from "../types"
-import { apiUrl } from "../../config.js"
+import { apiUrl } from "../config.js"
 
 export const HomePage = () => {
   const [allItems, setAllItems] = useState<types.Item[]>()

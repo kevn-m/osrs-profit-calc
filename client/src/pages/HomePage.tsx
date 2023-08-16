@@ -4,6 +4,8 @@ import { Searchbar } from "../components/Searchbar"
 import * as types from "../types"
 import { apiUrl } from "../config.js"
 
+const THUMBNAIL_BASE_URL = "https://oldschool.runescape.wiki/images/"
+
 export const HomePage = () => {
   const [allItems, setAllItems] = useState<types.Item[]>()
   const [allPrices, setAllPrices] = useState<types.PriceResponse | undefined>(
@@ -35,13 +37,19 @@ export const HomePage = () => {
       const { id, name, examine, highalch: highAlch, limit, icon } = item
       const itemPrices = prices?.data[id.toString()]
 
+      const buildIconUrl = (icon: string) => {
+        return `${THUMBNAIL_BASE_URL}${decodeURIComponent(
+          icon.replace(/ /g, "_")
+        )}`
+      }
+
       return {
         id,
         name,
         examine,
         highAlch: highAlch ?? 0,
         limit: limit ?? 0,
-        icon,
+        icon: buildIconUrl(icon),
         prices: {
           avgHighPrice: itemPrices?.avgHighPrice ?? null,
           highPriceVolume: itemPrices?.highPriceVolume ?? 0,
@@ -84,6 +92,7 @@ export const HomePage = () => {
         <table className="table-auto border-collapse border border-gray-400 w-full">
           <thead>
             <tr className="bg-gray-200">
+              <th className="px-4 py-2">Icon</th>
               <th className="px-4 py-2">Name</th>
               <th className="px-4 py-2">Examine</th>
               <th className="px-4 py-2">High Alch</th>
@@ -99,6 +108,10 @@ export const HomePage = () => {
                 key={item.id}
                 className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
               >
+                <td className="border px-4 py-2">
+                  {/* {item.icon} */}
+                  <img src={item.icon} alt={item.name} />
+                </td>
                 <td className="border px-4 py-2">{item.name}</td>
                 <td className="border px-4 py-2">{item.examine}</td>
                 <td className="border px-4 py-2">{item.highAlch}</td>

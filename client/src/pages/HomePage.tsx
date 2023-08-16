@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Axios, { AxiosResponse } from "axios"
 import { Searchbar } from "../components/Searchbar"
 import * as types from "../types"
+import { apiUrl } from "../../config.js"
 
 export const HomePage = () => {
   const [allItems, setAllItems] = useState<types.Item[]>()
@@ -11,7 +12,7 @@ export const HomePage = () => {
   const [selectedItems, setSelectedItems] = useState<types.Item[]>()
 
   const getAllItems = () => {
-    Axios.get("http://localhost:3001/api/items").then(
+    Axios.get(`${apiUrl}/api/items`).then(
       (res: AxiosResponse<types.Item[]>) => {
         setAllItems(res.data)
       }
@@ -19,7 +20,7 @@ export const HomePage = () => {
   }
 
   const getLatestPrices = () => {
-    Axios.get("http://localhost:3001/api/prices").then(
+    Axios.get(`${apiUrl}/api/prices`).then(
       (res: AxiosResponse<types.PriceResponse>) => {
         setAllPrices(res.data)
       }

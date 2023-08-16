@@ -108,7 +108,7 @@ export const HomePage = () => {
                 key={item.id}
                 className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
               >
-                <td className="border px-4 py-2">
+                <td className="border px-4 py-2 text-center">
                   {/* {item.icon} */}
                   <img src={item.icon} alt={item.name} />
                 </td>

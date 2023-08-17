@@ -11,7 +11,7 @@ export const HomePage = () => {
   const [allPrices, setAllPrices] = useState<types.PriceResponse | undefined>(
     undefined
   )
-  const [selectedItems, setSelectedItems] = useState<types.Item[]>()
+  const [selectedItems, setSelectedItems] = useState<types.Item[]>([])
 
   const getAllItems = () => {
     Axios.get(`${apiUrl}/api/items`).then(
@@ -88,58 +88,60 @@ export const HomePage = () => {
   return (
     <div className="font-mono container mx-auto flex flex-col justify-center p-4 w-full gap-3">
       <Searchbar items={allItems} handleClick={handleClick} />
-      <div className="overflow-x-auto rounded-lg">
-        <table className="table-auto border-collapse w-full border border-gray-300">
-          <thead>
-            <tr className="bg-slate-700 text-white">
-              <th className="px-4 py-2">Icon</th>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Examine</th>
-              <th className="px-4 py-2">High Alch</th>
-              <th className="px-4 py-2">Limit</th>
-              <th className="px-4 py-2">Avg High Price</th>
-              <th className="px-4 py-2">Avg Low Price</th>
-              <th className="px-4 py-2">Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {buildSelectedItems()?.map((item, index) => (
-              <tr
-                key={item.id}
-                className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
-              >
-                <td className="border px-4 py-2 text-center">
-                  {/* {item.icon} */}
-                  <img src={item.icon} alt={item.name} />
-                </td>
-                <td className="border px-4 py-2">{item.name}</td>
-                <td className="border px-4 py-2">{item.examine}</td>
-                <td className="border px-4 py-2">{item.highAlch}</td>
-                <td className="border px-4 py-2">{item.limit}</td>
-                <td className="border px-4 py-2">
-                  {item.prices.avgHighPrice ?? "-"}
-                </td>
-                <td className="border px-4 py-2">
-                  {item.prices.avgLowPrice ?? "-"}
-                </td>
-                <td
-                  className="border px-4 py-2 text-center font-bold text-red-500"
-                  onClick={() =>
-                    setSelectedItems((prev) =>
-                      prev?.filter(
-                        (selectedItem) => selectedItem.id !== item.id
-                      )
-                    )
-                  }
-                  style={{ cursor: "pointer" }}
-                >
-                  ❌
-                </td>
+      {selectedItems.length > 0 && (
+        <div className="overflow-x-auto rounded-lg">
+          <table className="table-auto border-collapse w-full border border-gray-300">
+            <thead>
+              <tr className="bg-slate-700 text-white">
+                <th className="px-4 py-2">Icon</th>
+                <th className="px-4 py-2">Name</th>
+                <th className="px-4 py-2">Examine</th>
+                <th className="px-4 py-2">High Alch</th>
+                <th className="px-4 py-2">Limit</th>
+                <th className="px-4 py-2">Avg High Price</th>
+                <th className="px-4 py-2">Avg Low Price</th>
+                <th className="px-4 py-2">Remove</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {buildSelectedItems()?.map((item, index) => (
+                <tr
+                  key={item.id}
+                  className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
+                >
+                  <td className="border px-4 py-2 text-center">
+                    {/* {item.icon} */}
+                    <img src={item.icon} alt={item.name} />
+                  </td>
+                  <td className="border px-4 py-2">{item.name}</td>
+                  <td className="border px-4 py-2">{item.examine}</td>
+                  <td className="border px-4 py-2">{item.highAlch}</td>
+                  <td className="border px-4 py-2">{item.limit}</td>
+                  <td className="border px-4 py-2">
+                    {item.prices.avgHighPrice ?? "-"}
+                  </td>
+                  <td className="border px-4 py-2">
+                    {item.prices.avgLowPrice ?? "-"}
+                  </td>
+                  <td
+                    className="border px-4 py-2 text-center font-bold text-red-500"
+                    onClick={() =>
+                      setSelectedItems((prev) =>
+                        prev?.filter(
+                          (selectedItem) => selectedItem.id !== item.id
+                        )
+                      )
+                    }
+                    style={{ cursor: "pointer" }}
+                  >
+                    ❌
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   )
 }

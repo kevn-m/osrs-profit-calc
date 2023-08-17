@@ -86,12 +86,12 @@ export const HomePage = () => {
   }, [selectedItems])
 
   return (
-    <div className="container mx-auto flex flex-col justify-center p-4 w-full gap-3">
+    <div className="font-mono container mx-auto flex flex-col justify-center p-4 w-full gap-3">
       <Searchbar items={allItems} handleClick={handleClick} />
-      <div className="overflow-x-auto">
-        <table className="table-auto border-collapse border border-gray-400 w-full">
+      <div className="overflow-x-auto rounded-lg">
+        <table className="table-auto border-collapse w-full border border-gray-300">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-slate-700 text-white">
               <th className="px-4 py-2">Icon</th>
               <th className="px-4 py-2">Name</th>
               <th className="px-4 py-2">Examine</th>
@@ -133,7 +133,7 @@ export const HomePage = () => {
                   }
                   style={{ cursor: "pointer" }}
                 >
-                  x
+                  ❌
                 </td>
               </tr>
             ))}

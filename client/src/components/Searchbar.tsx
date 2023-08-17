@@ -59,7 +59,7 @@ export const Searchbar = (props: Props) => {
         className="border-none h-12 w-full px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
         onChange={handleChange}
         value={searchTerm}
-        placeholder="Search an item"
+        placeholder="e.g. Dragon Hunter Crossbow"
       />
       {isDropdownOpen && filteredItems && (
         <div

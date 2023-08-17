@@ -51,16 +51,16 @@ export const Searchbar = (props: Props) => {
   }
 
   return (
-    <div>
+    <div className="relative mx-auto w-6/12 flex justify-center">
       <input
-        className="border-none w-full h-12 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+        className="border-none h-12 w-full px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
         onChange={handleChange}
         placeholder="Search an item"
       />
       {isDropdownOpen && filteredItems && (
         <div
           ref={dropdownRef}
-          className="absolute top-12 bg-white border border-gray-300 z-10 max-h-60 overflow-y-auto"
+          className="absolute w-full top-10 bg-white border border-gray-300 z-10 max-h-60 overflow-y-auto"
         >
           {filteredItems?.map((item) => (
             <div

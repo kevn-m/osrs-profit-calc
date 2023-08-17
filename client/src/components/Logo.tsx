@@ -7,7 +7,7 @@ export const Logo = () => {
       <img
         src={osrsItemLogo}
         alt="OSRS Item Logo"
-        className="mx-auto w-52 rounded-full pt-3"
+        className="mx-auto w-52 rounded-full pt-3 shadow-lg"
       />
     </div>
   )

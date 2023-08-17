@@ -12,6 +12,8 @@ export const Searchbar = (props: Props) => {
   const [filteredItems, setFilteredItems] = useState<types.Item[]>()
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
+  const [searchTerm, setSearchTerm] = useState<string>("")
+
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -31,14 +33,14 @@ export const Searchbar = (props: Props) => {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value.toLowerCase()
+    setSearchTerm(e.target.value.toLowerCase())
 
-    if (searchValue === "") {
+    if (searchTerm === "") {
       setFilteredItems(undefined)
     } else {
       setFilteredItems(
         items?.filter((item) => {
-          return item.name.toLowerCase().includes(searchValue)
+          return item.name.toLowerCase().includes(searchTerm)
         })
       )
       setIsDropdownOpen(true)
@@ -48,6 +50,7 @@ export const Searchbar = (props: Props) => {
   const handleItemClick = (item: types.Item) => {
     handleClick(item)
     setIsDropdownOpen(false)
+    setSearchTerm("")
   }
 
   return (
@@ -55,6 +58,7 @@ export const Searchbar = (props: Props) => {
       <input
         className="border-none h-12 w-full px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
         onChange={handleChange}
+        value={searchTerm}
         placeholder="Search an item"
       />
       {isDropdownOpen && filteredItems && (

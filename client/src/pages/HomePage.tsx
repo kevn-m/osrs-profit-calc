@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Axios, { AxiosResponse } from "axios"
 import { Searchbar } from "../components/Searchbar"
 import { Toggle } from "../components/Toggle"
+import { formatNumber } from "../helpers/formatNumber"
 import * as types from "../types"
 import { apiUrl } from "../config.js"
 
@@ -146,13 +147,13 @@ export const HomePage = () => {
                   <td className="border px-4 py-2">{item.limit}</td>
                   <td className="border px-4 py-2">
                     {toggleLatestPrices
-                      ? item.prices.highPrice
-                      : item.prices.avgHighPrice ?? "-"}
+                      ? formatNumber(item.prices.highPrice)
+                      : formatNumber(item.prices.avgHighPrice) ?? "-"}
                   </td>
                   <td className="border px-4 py-2">
                     {toggleLatestPrices
-                      ? item.prices.lowPrice
-                      : item.prices.avgLowPrice ?? "-"}
+                      ? formatNumber(item.prices.lowPrice)
+                      : formatNumber(item.prices.avgLowPrice) ?? "-"}
                   </td>
                   <td
                     className="border px-4 py-2 text-center font-bold text-red-500"

@@ -22,6 +22,17 @@ export interface PriceResponse {
   timestamp: number
 }
 
+export interface LatestPriceResponse {
+  data: { [key: string]: LatestPrices }
+}
+
+export interface LatestPrices {
+  high: number | null
+  highTime: number | null
+  low: number | null
+  lowTime: number | null
+}
+
 export interface TransformedItems {
   id: number
   name: string
@@ -34,5 +45,9 @@ export interface TransformedItems {
     highPriceVolume: number
     avgLowPrice: number | null
     lowPriceVolume: number
+    highPrice: number | null
+    highPriceTime: number | null
+    lowPrice: number | null
+    lowPriceTime: number | null
   }
 }

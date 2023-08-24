@@ -112,7 +112,9 @@ export const HomePage = () => {
   return (
     <div className="font-mono container mx-auto flex flex-col justify-center p-4 w-full gap-3">
       <Searchbar items={allItems} handleClick={handleClick} />
-      <Toggle checked={toggleLatestPrices} handleChange={handleChange} />
+      {selectedItems.length > 0 && (
+        <Toggle checked={toggleLatestPrices} handleChange={handleChange} />
+      )}
       {selectedItems.length > 0 && (
         <div className="overflow-x-auto rounded-lg">
           <table className="table-auto border-collapse w-full border border-gray-300">

@@ -113,12 +113,12 @@ export const HomePage = () => {
   return (
     <div className="font-mono container mx-auto flex flex-col justify-center p-4 w-full gap-3">
       <Searchbar items={allItems} handleClick={handleClick} />
-      <div className="flex justify-end gap-2 items-center">
-        <span className="text-xs"> Latest prices: </span>
-        {selectedItems.length > 0 && (
+      {selectedItems.length > 0 && (
+        <div className="flex justify-end gap-2 items-center">
+          <span className="text-xs"> Latest prices: </span>
           <Toggle checked={toggleLatestPrices} handleChange={handleChange} />
-        )}
-      </div>
+        </div>
+      )}
       {selectedItems.length > 0 && (
         <div className="overflow-x-auto rounded-lg">
           <table className="table-auto border-collapse w-full border border-gray-300">

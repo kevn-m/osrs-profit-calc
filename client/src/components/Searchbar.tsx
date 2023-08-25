@@ -53,13 +53,22 @@ export const Searchbar = (props: Props) => {
     setSearchTerm("")
   }
 
+  const generateRandomItemName = () => {
+    if (items) {
+      const randomIndex = Math.floor(Math.random() * items?.length)
+      return `e.g. ${items[randomIndex].name}`
+    } else {
+      return ""
+    }
+  }
+
   return (
     <div className="relative mx-auto w-6/12 flex justify-center">
       <input
         className="border-none h-12 w-full px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
         onChange={handleChange}
         value={searchTerm}
-        placeholder="e.g. Dragon Hunter Crossbow"
+        placeholder={generateRandomItemName()}
       />
       {isDropdownOpen && filteredItems && (
         <div

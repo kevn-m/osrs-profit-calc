@@ -7,6 +7,7 @@ import * as types from "../types"
 import { apiUrl } from "../config.js"
 
 const THUMBNAIL_BASE_URL = "https://oldschool.runescape.wiki/images/"
+const WIKI_BASE_URL = "https://oldschool.runescape.wiki/w/"
 
 export const HomePage = () => {
   const [allItems, setAllItems] = useState<types.Item[]>()
@@ -112,26 +113,29 @@ export const HomePage = () => {
   return (
     <div className="font-mono container mx-auto flex flex-col justify-center p-4 w-full gap-3">
       <Searchbar items={allItems} handleClick={handleClick} />
-      {selectedItems.length > 0 && (
-        <Toggle checked={toggleLatestPrices} handleChange={handleChange} />
-      )}
+      <div className="flex justify-end gap-2 items-center">
+        <span className="text-xs"> Latest prices: </span>
+        {selectedItems.length > 0 && (
+          <Toggle checked={toggleLatestPrices} handleChange={handleChange} />
+        )}
+      </div>
       {selectedItems.length > 0 && (
         <div className="overflow-x-auto rounded-lg">
           <table className="table-auto border-collapse w-full border border-gray-300">
             <thead>
               <tr className="bg-slate-700 text-white">
-                <th className="px-4 py-2">Icon</th>
-                <th className="px-4 py-2">Name</th>
-                <th className="px-4 py-2">Examine</th>
-                <th className="px-4 py-2">High Alch</th>
-                <th className="px-4 py-2">Limit</th>
-                <th className="px-4 py-2">
+                <th className="px-4 py-2 w-[5%]">Icon</th>
+                <th className="px-4 py-2 w-[19%]">Name</th>
+                <th className="px-4 py-2 w-[30%]">Examine</th>
+                <th className="px-4 py-2 w-[10%]">High Alch</th>
+                <th className="px-4 py-2 w-[5%]">Limit</th>
+                <th className="px-4 py-2 w-[10%]">
                   {toggleLatestPrices ? "Latest High Price" : "Avg High Price"}
                 </th>
-                <th className="px-4 py-2">
+                <th className="px-4 py-2 w-[10%]">
                   {toggleLatestPrices ? "Latest Low Price" : "Avg Low Price"}
                 </th>
-                <th className="px-4 py-2">Remove</th>
+                <th className="px-4 py-2 w-[1%]">Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -141,9 +145,20 @@ export const HomePage = () => {
                   className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
                 >
                   <td className="border px-4 py-2 text-center">
-                    <img src={item.icon} alt={item.name} />
+                    <img className="m-auto" src={item.icon} alt={item.name} />
                   </td>
-                  <td className="border px-4 py-2">{item.name}</td>
+                  <td className="border px-4 py-2">
+                    <a
+                      href={`https://oldschool.runescape.wiki/w/${encodeURIComponent(
+                        item.name
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      {item.name}
+                    </a>
+                  </td>
                   <td className="border px-4 py-2">{item.examine}</td>
                   <td className="border px-4 py-2">
                     {formatNumber(item.highAlch)}

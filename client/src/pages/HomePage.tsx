@@ -145,7 +145,9 @@ export const HomePage = () => {
                   </td>
                   <td className="border px-4 py-2">{item.name}</td>
                   <td className="border px-4 py-2">{item.examine}</td>
-                  <td className="border px-4 py-2">{item.highAlch}</td>
+                  <td className="border px-4 py-2">
+                    {formatNumber(item.highAlch)}
+                  </td>
                   <td className="border px-4 py-2">{item.limit}</td>
                   <td className="border px-4 py-2">
                     {toggleLatestPrices

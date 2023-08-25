@@ -63,7 +63,7 @@ export const Searchbar = (props: Props) => {
   }
 
   return (
-    <div className="relative mx-auto w-6/12 flex justify-center">
+    <div className="relative sm:w-full flex justify-center">
       <input
         className="border-none h-12 w-full px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
         onChange={handleChange}

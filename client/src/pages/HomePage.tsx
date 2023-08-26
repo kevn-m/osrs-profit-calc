@@ -125,17 +125,42 @@ export const HomePage = () => {
             <thead>
               <tr className="bg-slate-700 text-white">
                 <th className="px-4 py-2 w-[5%]">Icon</th>
-                <th className="px-4 py-2 w-[19%]">Name</th>
+                <th className="px-4 py-2 w-[15%]">Name</th>
                 <th className="px-4 py-2 w-[30%]">Examine</th>
                 <th className="px-4 py-2 w-[10%]">High Alch</th>
                 <th className="px-4 py-2 w-[5%]">Limit</th>
-                <th className="px-4 py-2 w-[10%]">
-                  {toggleLatestPrices ? "Latest High Price" : "Avg High Price"}
+                <th className="px-4 py-2 w-[15%]">
+                  {toggleLatestPrices ? (
+                    <>
+                      Latest
+                      <br />
+                      High Price
+                    </>
+                  ) : (
+                    <>
+                      Avg
+                      <br />
+                      High Price
+                    </>
+                  )}
                 </th>
-                <th className="px-4 py-2 w-[10%]">
-                  {toggleLatestPrices ? "Latest Low Price" : "Avg Low Price"}
+                <th className="px-4 py-2 w-[15%]">
+                  {toggleLatestPrices ? (
+                    <>
+                      Latest
+                      <br />
+                      Low Price
+                    </>
+                  ) : (
+                    <>
+                      Avg
+                      <br />
+                      Low Price
+                    </>
+                  )}
                 </th>
-                <th className="px-4 py-2 w-[1%]">Remove</th>
+
+                <th className="px-4 py-2 w-[5%]">Remove</th>
               </tr>
             </thead>
             <tbody>

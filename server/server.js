@@ -12,11 +12,6 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something went wrong!")
 })
 
-// require("dotenv").config()
-// mongoose.connect(
-//   `mongodb+srv://kevn-m:${process.env.MONGO_DB_PASSWORD}@cluster0.jy9unwn.mongodb.net/osrs-profit-calc?retryWrites=true&w=majority`
-// )
-
 // const userRouter = require("./routes/Users")
 const apiRouter = require("./routes/Api")
 
